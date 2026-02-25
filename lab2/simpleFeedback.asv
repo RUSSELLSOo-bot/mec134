@@ -1,0 +1,46 @@
+
+%Part 1: Verify Oscillatory regime 
+%should be oscillatory on k = 12
+
+K = 12;
+
+out = sim('simpleFeedback');          % SimulationOutput object
+stpresponse = out.simout;             % timeseries from Workspace block
+
+figure 
+hold on 
+plot(stpresponse.Time, stpresponse.Data)
+xlabel('Time (s)')
+ylabel('Step Response (testing for oscillations')
+grid on
+hold off
+
+%Part 2: Verify stable regime
+
+K_val = [13 120 1200 12000];
+
+%setup the calculate
+s = tf('s');
+G = (s+2)/(s^2 - 12*s);     
+
+figure
+hold on
+
+for i = 1:length(K_val)
+    
+    K = K_val(i);              
+    T = 
+    out = sim('simpleFeedback');  % run Simulink
+    stpresponse = out.simout;     % get output
+    
+    plot(stpresponse.Time, stpresponse.Data)
+    
+end
+
+plot(stpresponse.Time, stpresponse.Data)
+xlabel('Time (s)')
+ylabel('Step Response (testing for stability')
+legendStrings = "K=" + string(K_val);
+legend(legendStrings)
+grid on
+hold off
